@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { LoginForm, UserApiService, Utilisateur } from './api/user-api.service';
 import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
     private utilisateur?: Utilisateur;
-    constructor(private userApiService: UserApiService) { }
+    constructor(private userApiService: UserApiService, private router: Router) { }
 
   isLoggedIn(){
     return this.utilisateur || localStorage.getItem('user') ? true : false;
@@ -32,5 +33,11 @@ export class AuthService {
             localStorage.setItem('user', JSON.stringify(res));
         }
     });
+  }
+
+  userInfo() {
+    if(this.utilisateur) return this.utilisateur;
+    else if (this.isLoggedIn()) return JSON.parse(localStorage.getItem('user') || '{}');
+    else this.router.navigate(['/login']);
   }
 }
