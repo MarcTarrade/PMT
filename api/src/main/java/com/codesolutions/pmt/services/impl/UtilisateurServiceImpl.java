@@ -1,9 +1,12 @@
 package com.codesolutions.pmt.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codesolutions.pmt.dao.UtilisateurRepository;
+import com.codesolutions.pmt.exceptions.EntityDoesntExistsException;
 import com.codesolutions.pmt.models.LoginForm;
 import com.codesolutions.pmt.models.Utilisateur;
 import com.codesolutions.pmt.services.UtilisateurService;
@@ -22,6 +25,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public Utilisateur create(Utilisateur utilisateur) {
 		return utilisateurRepository.save(utilisateur);
+	}
+	
+	public Utilisateur findById(int id) {
+		Optional<Utilisateur> utilisateur = utilisateurRepository.findById(id);
+		if (utilisateur.isPresent()) {
+			return utilisateur.get();
+		}
+		throw new EntityDoesntExistsException();
 	}
 
 }
