@@ -52,7 +52,7 @@ INSERT INTO projet (id, nom, description, dateDebut, id_administrateur) VALUES (
 INSERT INTO projet_utilisateur (id, id_utilisateur, id_projet, role) VALUES (1000, 1000, 1000, "Administrateur"), (2000, 2000, 1000, "Membre"), (3000, 3000, 1000, "Observateur"), (4000, 2000, 2000, "Administrateur"), (5000, 1000, 2000, "Observateur"), (6000, 3000, 2000, "Membre");
 
 INSERT INTO tache (id, nom, description, dateEcheance, priorite, id_utilisateur, id_projet, status) VALUES 
-(1000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/08/30', "HAUTE", 2000, 1000 "Crée"), 
+(1000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/08/30', "HAUTE", 2000, 1000, "Crée"), 
 (2000, "Connexion/Inscription Back", "Faire la page de connexion et d'inscription en java", '2024/08/30', "HAUTE", 2000, 1000, "Crée"), 
 (3000, "Creer projet Front", "Faire la page pour creer un nouveau projet en angular", '2024/08/28', "BASSE", 3000, 1000, "En cours"), 
 (4000, "Creer projet Back", "Faire la page pour creer un nouveau projet en java", '2024/08/28', "BASSE", 3000, 1000, "En cours"), 
