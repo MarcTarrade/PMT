@@ -16,11 +16,16 @@ CREATE TABLE projet (
     id_administrateur BIGINT
 );
 
-CREATE TABLE projet_utilisateurs (
-    id BIGINT UNIQUE,
-    utilisateurs_id BIGINT,
+CREATE TABLE projet_utilisateur_role (
+    id BIGINT,
     projet_id BIGINT,
-    role VARCHAR(20)
+    role_id BIGINT,
+    utilisateur_id BIGINT
+);
+
+CREATE TABLE role (
+    id BIGINT UNIQUE,
+    nom VARCHAR(255)
 );
 
 CREATE TABLE tache (
@@ -49,7 +54,9 @@ INSERT INTO utilisateur (id, nom, email, password) VALUES (1000, "Pierre", "pier
 
 INSERT INTO projet (id, nom, description, date_debut, id_administrateur) VALUES (1000, "PMT", "Projet PMT pour l'etude de cas", '2024/08/21', 1000), (2000, "Ikea", "Projet pour le site d'Ikea", '2024/08/21', 2000);
 
-INSERT INTO projet_utilisateurs (id, utilisateurs_id, projet_id, role) VALUES (2000, 2000, 1000, "Membre"), (3000, 3000, 1000, "Observateur"), (5000, 1000, 2000, "Observateur"), (6000, 3000, 2000, "Membre");
+INSERT INTO projet_utilisateur_role (id, projet_id, role_id, utilisateur_id) VALUES (1000, 1000, 1000, 2000), (2000, 1000, 2000, 3000), (3000, 2000, 1000, 1000), (4000, 2000, 2000, 3000);
+
+INSERT INTO role (id, nom) VALUES (1000, "Membre"), (2000, "Observateur");
 
 INSERT INTO tache (id, nom, description, date_echeance, priorite, id_utilisateur, id_projet, status) VALUES 
 (1000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/08/30', "HAUTE", 2000, 1000, "Crée"), 
