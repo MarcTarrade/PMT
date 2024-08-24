@@ -26,24 +26,34 @@ public class ProjetServiceImpl implements ProjetService {
 	@Autowired
 	private RoleServiceImpl roleServiceImpl;
 	
+	/**
+	 * Creer un projet avec l'id de l'utilisateur et un objet projetForm qui correspond au nom et a la description du projet
+	 */
 	@Override
 	public Projet create(int id_utilisateur, ProjetForm projetForm) {
 		Utilisateur administrateur = utilisateurServiceImpl.findById(id_utilisateur);
 		Projet projet = new Projet(projetForm.getNom(), projetForm.getDescription(), administrateur);
 		return projetRepository.save(projet);
 	}
+	/**
+	 * Invite un utilisateur pour un projet donné
+	 */
 
 	@Override
 	public ProjetUtilisateurRole invite(int id, String email) {
 		Optional<Projet> optional = projetRepository.findById(id);
 		if (!optional.isPresent()) throw new EntityDoesntExistsException();
 		Projet projet = optional.get();
+		//Recupere l'utilsateur grace a son email
 		Utilisateur utilisateur = utilisateurServiceImpl.findByEmail(email);
 		ProjetUtilisateurRole projetUtilisateurRole = roleServiceImpl.creer(new ProjetUtilisateurRole(projet, utilisateur, new Role(1000, "Membre")));
 		projetRepository.save(projet);
 		return projetUtilisateurRole;
 	}
 
+	/**
+	 * Recuperer les infos d'un projet grace a son id
+	 */
 	@Override
 	public Projet findById(int id) {
 	 Optional<Projet> projet = projetRepository.findById(id);
@@ -53,6 +63,9 @@ public class ProjetServiceImpl implements ProjetService {
 	 throw new EntityDoesntExistsException();
 	}
 
+	/**
+	 * Recupere tous les utilisateurs membre d'un projet grace a un id donné
+	 */
 	@Override
 	public List<Utilisateur> findUsersByProjectId(int id) {
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
@@ -60,6 +73,9 @@ public class ProjetServiceImpl implements ProjetService {
 		return utilisateurs;
 	}
 	
+	/**
+	 * Recupere tous les projets pour un utilisateur 
+	 */
 	@Override
 	public List<Projet> findProjetsByUtilisateurId(int id) {
 		List<Projet> projets = new ArrayList<Projet>();

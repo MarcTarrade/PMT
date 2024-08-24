@@ -17,7 +17,12 @@ import com.codesolutions.pmt.services.ProjetUtilisateurRoleService;
 public class ProjetUtilisateurRoleController {
 	@Autowired
 	private ProjetUtilisateurRoleService projetUtilisateurRoleService;
-	
+	/**
+	 * Met à jour les roles de tous les utilisateurs pour un projet donné
+	 * @param id
+	 * @param utilisateursRole
+	 * @return List<ProjetUtilisateurRole>
+	 */
 	@PutMapping("/projet/{id}/roles")
 	public List<ProjetUtilisateurRole> updateUstilisateursRole(@PathVariable int id, @RequestBody List<ProjetUtilisateurRole> utilisateursRole) {
 		return projetUtilisateurRoleService.updateUtilisateursRole(id, utilisateursRole);

@@ -19,6 +19,10 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 	
+	/**
+	 * Recupere tous les roles
+	 * @return List<Role>
+	 */
 	@GetMapping("roles")
 	public List<Role> findAll() {
 		return roleService.findAll();

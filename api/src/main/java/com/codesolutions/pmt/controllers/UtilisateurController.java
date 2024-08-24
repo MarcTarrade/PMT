@@ -24,6 +24,11 @@ public class UtilisateurController {
 	@Autowired
 	private UtilisateurService utilisateurService;
 	
+	/**
+	 * Verifie les informations de l'utilisateur pour le connecter
+	 * @param loginForm
+	 * @return Utilisateur
+	 */
 	@PostMapping("/connexion")
 	public Utilisateur connexion(@RequestBody LoginForm loginForm ) {
 		Utilisateur utilisateur = utilisateurService.connect(loginForm);
@@ -33,11 +38,21 @@ public class UtilisateurController {
 		return utilisateur;
 	}
 	
+	/**
+	 * Creer un utilisateur
+	 * @param utilisateur
+	 * @return Utilisateur
+	 */
 	@PostMapping("user")
 	public Utilisateur create(@RequestBody Utilisateur utilisateur) {
 		return utilisateurService.create(utilisateur);
 	}
 	
+	/**
+	 * Recupere un utilisateur avec un id donné
+	 * @param id
+	 * @return Utilisateur
+	 */
 	@GetMapping("user/{id}")
 	public Utilisateur findById(@PathVariable int id) {
 		return utilisateurService.findById(id);

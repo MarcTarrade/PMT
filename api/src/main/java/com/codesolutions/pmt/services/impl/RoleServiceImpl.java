@@ -25,7 +25,9 @@ public class RoleServiceImpl implements RoleService{
 		return projetUtilisateurRoleRepository.save(projetUtilisateurRole);
 	}
 
-
+	/**
+	 * Recuperer tous les roles
+	 */
 	@Override
 	public List<Role> findAll() {
 		List<Role> roles = new ArrayList<Role>();

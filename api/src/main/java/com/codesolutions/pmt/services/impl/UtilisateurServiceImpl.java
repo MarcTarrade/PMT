@@ -21,16 +21,25 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
 
+	/**
+	 * Verifie que l'email et le mot de passe sont correctes en base de donnée
+	 */
 	@Override
 	public Utilisateur connect(LoginForm loginForm) {
 		return utilisateurRepository.connect(loginForm.getEmail(), loginForm.getPassword());
 	}
 
+	/**
+	 * Creer un utilisateur
+	 */
 	@Override
 	public Utilisateur create(Utilisateur utilisateur) {
 		return utilisateurRepository.save(utilisateur);
 	}
 
+	/**
+	 * Recupere les infos d'un utilisateur avec son id
+	 */
 	public Utilisateur findById(int id) {
 		Optional<Utilisateur> utilisateur = utilisateurRepository.findById(id);
 		if (utilisateur.isPresent()) {
@@ -39,6 +48,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		throw new EntityDoesntExistsException();
 	}
 
+	/**
+	 * Recuperer les infos d'un utilisateur avec son email
+	 */
 	public Utilisateur findByEmail(String email) {
 		return utilisateurRepository.findByEmail(email);
 	}
