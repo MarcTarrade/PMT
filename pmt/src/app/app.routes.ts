@@ -24,16 +24,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
 }, {
     path: 'project',
-    canActivate: [authGuard],
     component: ProjectComponent,
     children: [{
         path: 'new',
-        component: NewProjectComponent
+        component: NewProjectComponent,
+        canActivate: [authGuard]
     }, {
         path: 'list',
-        component: ListProjectComponent
+        component: ListProjectComponent,
+        canActivate: [authGuard]
     }, {
         path: ':id',
-        component: ProjectDetailComponent
+        component: ProjectDetailComponent,
+        canActivate: [authGuard],
     }],
 }];
