@@ -9,6 +9,7 @@ export class RoleService {
 
   constructor(private roleApiService: RoleApiService) { }
 
+  // Récupère tous les roles
   async getRoles() {
     return await lastValueFrom(this.roleApiService.getRoles());
   }

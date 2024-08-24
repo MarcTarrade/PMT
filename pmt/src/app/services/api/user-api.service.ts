@@ -20,10 +20,11 @@ export class UserApiService {
     private url = 'http://localhost:8090';
     constructor(private http: HttpClient) { }
 
+    // Ajoute un utilisateur
     postUser(user: Utilisateur) {
         return this.http.post<Utilisateur>(`${this.url}/user`, user);
     }
-
+    // Verifie que l'email et le mot de passe sont correctes en base de donnée
     connect(loginForm : LoginForm) {
         return this.http.post<Utilisateur>(`${this.url}/connexion`, loginForm);
     }

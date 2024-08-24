@@ -32,17 +32,16 @@ export class ProjectDetailComponent {
     }
 
     onSaveUtilisateurs() {
-        console.log(this.projet?.utilisateurs[0]);
         this.projetService.updateRoles(this.currentId, this.projet!.utilisateurs)
     }
 
     onRoleChange(newRole: Role, index: number) {
+        // Met à jour le role de l'utilisateur au changement de role
         this.projet!.utilisateurs[index].role = newRole;
     }
 
     async onAddUtilisateur() {
         const newUtilisateur = await this.projetService.addUtilisateurToProjet(this.currentId, this.newUtilisateurEmail)
-        console.log(newUtilisateur)
         this.projet?.utilisateurs.push(newUtilisateur);
     }
 }

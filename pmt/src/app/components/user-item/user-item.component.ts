@@ -27,6 +27,7 @@ export class UserItemComponent {
     }
 
     onSelectionChange() {
+        // Envoie le role selectionne au composant parent
         this.roleChange.emit(this.role);
     }
 }

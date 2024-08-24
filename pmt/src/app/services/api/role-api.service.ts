@@ -14,6 +14,7 @@ export class RoleApiService {
     private url = 'http://localhost:8090';
     constructor(private httpClient: HttpClient) { }
   
+    // Récupère tous les roles
     getRoles(){
       return this.httpClient.get<Role[]>(`${this.url}/roles`);
     }
