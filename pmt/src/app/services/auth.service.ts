@@ -37,7 +37,10 @@ export class AuthService {
 
   userInfo() {
     if(this.utilisateur) return this.utilisateur;
-    else if (this.isLoggedIn()) return JSON.parse(localStorage.getItem('user') || '{}');
-    else this.router.navigate(['/login']);
+    else if (this.isLoggedIn()) return JSON.parse(localStorage.getItem('user') || '{}') as Utilisateur;
+    else {
+        this.router.navigate(['/login']);
+        return;
+    }
   }
 }

@@ -1,0 +1,6 @@
+<li class="list-group-item">
+    <p>{{utilisateur.email}}</p>
+    <select [(ngModel)]="role" (change)="onSelectionChange()">
+        <option [ngValue]="roleItem" *ngFor="let roleItem of roles">{{roleItem.nom}}</option>
+    </select>
+</li>

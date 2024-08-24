@@ -1,0 +1,6 @@
+<div class="list-group">
+    <a [routerLink]="'/project/' + projet.id" class="list-group-item list-group-item-action" *ngFor="let projet of projets">
+      <h2>{{ projet.nom }}</h2>
+      <p>{{ projet.description }}</p>
+    </a>
+</div>

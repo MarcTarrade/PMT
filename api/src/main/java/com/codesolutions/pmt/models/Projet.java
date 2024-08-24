@@ -29,8 +29,10 @@ public class Projet {
 	@OneToOne
 	@JoinColumn(name="id_administrateur", nullable=false)
 	private Utilisateur administrateur;
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+	@OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ProjetUtilisateurRole> utilisateurs = new ArrayList<>();
+	
+	public Projet() {}
 	
 	public Projet(String nom, String description, Utilisateur administrateur) {
 		this.nom = nom;
@@ -69,10 +71,13 @@ public class Projet {
 	public void setAdministrateur(Utilisateur administrateur) {
 		this.administrateur = administrateur;
 	}
-	public List<Utilisateur> getUtilisateurs() {
+
+	public List<ProjetUtilisateurRole> getUtilisateurs() {
 		return utilisateurs;
 	}
-	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+
+	public void setUtilisateurs(List<ProjetUtilisateurRole> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
+	
 }

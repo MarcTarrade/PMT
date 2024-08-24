@@ -1,0 +1,18 @@
+<div class="container mt-3">
+    <h1>{{ projet?.nom }}</h1>
+    <p>{{ projet?.description }}</p>
+    <small>{{ projet?.dateDebut | date }}</small>
+    <div class="mt-2">
+        <div class="row">
+            <p>Ajouter un membre</p>
+            <input type="text" class="form-control" id="utilisateur" [(ngModel)]="newUtilisateurEmail" />
+            <button class="btn btn-primary mt-1" (click)="onAddUtilisateur()">Ajouter</button>
+        </div>
+        <div class="mt-5"></div>
+        <p>Membres du projet </p>
+        <ul class="list-group">
+            <app-user-item *ngFor="let user of projet?.utilisateurs; let index = index" [utilisateur]="user.utilisateur" [role]="user.role" (roleChange)="onRoleChange($event, index)"></app-user-item>
+        </ul>
+        <button class="btn btn-primary mt-1" (click)="onSaveUtilisateurs()">Sauvegarder</button>
+    </div>
+</div>
