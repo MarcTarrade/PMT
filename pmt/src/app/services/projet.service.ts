@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Projet, ProjetApiService, ProjetForm, ProjetUtilisateurRole } from './api/projet-api.service';
 import { lastValueFrom } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjetService {
+    projet?: Projet;
 
-  constructor(private projetApiService: ProjetApiService) { }
+  constructor(private projetApiService: ProjetApiService, private authService: AuthService) { }
 
   // Ajoute un projet pour un administrateur
   createProjet(id_utilisateur: number, projetForm: ProjetForm) {
@@ -16,7 +18,8 @@ export class ProjetService {
 
   // Recupere un projet
   async getProjet(id: number) {
-    return await lastValueFrom(this.projetApiService.getProject(id));
+    this.projet = await lastValueFrom(this.projetApiService.getProject(id));
+    return this.projet
   }
 
  // Recupere tous les projets d'un utilisateur
@@ -33,4 +36,18 @@ export class ProjetService {
   updateRoles(id_projet: number, projetUtilisateurRole: ProjetUtilisateurRole[]) {
     this.projetApiService.updateRoles(id_projet, projetUtilisateurRole).subscribe();
   }
+
+  isAdmin(): boolean {
+    if(!this.projet) return false
+    const utilisateur = this.authService.userInfo();
+    if(!utilisateur) return false
+    return this.projet.administrateur.id === utilisateur.id ? true : false;
+  }
+
+  isMember(): boolean {
+    if(!this.projet) return false
+    const utilisateur = this.authService.userInfo();
+    if(!utilisateur) return false
+    return this.projet.utilisateurs.find(utilisateur => utilisateur.id === utilisateur.id && utilisateur.role.nom === 'Membre') || this.projet.administrateur.id === utilisateur.id ? true : false;
+}
 }

@@ -1,3 +1,4 @@
+<app-error-toast [message]="errorMessage" [show]="showErrorToast" (showChanged)="showError(errorMessage, $event)"></app-error-toast>
 <div class="container mt-3">
     <h1>{{ projet?.nom }}</h1>
     <p>{{ projet?.description }}</p>
