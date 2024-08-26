@@ -48,6 +48,10 @@ export class ProjetService {
     if(!this.projet) return false
     const utilisateur = this.authService.userInfo();
     if(!utilisateur) return false
-    return this.projet.utilisateurs.find(utilisateur => utilisateur.id === utilisateur.id && utilisateur.role.nom === 'Membre') || this.projet.administrateur.id === utilisateur.id ? true : false;
+    return this.projet.utilisateurs.find(utilisateurElement => utilisateurElement.utilisateur.id === utilisateur.id && utilisateurElement.role.nom === 'Membre') || this.projet.administrateur.id === utilisateur.id ? true : false;
 }
+
+  async getUsersByProject(id_projet: number) {
+    return await lastValueFrom(this.projetApiService.getUsersByProject(id_projet));
+  }
 }

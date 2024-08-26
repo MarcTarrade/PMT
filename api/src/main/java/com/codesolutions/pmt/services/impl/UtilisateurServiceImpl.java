@@ -54,7 +54,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public Utilisateur findByEmail(String email) {
 		return utilisateurRepository.findByEmail(email);
 	}
-
 	
-
+	/**
+	 * Recupere tous les utilisateurs membre d'un projet grace a un id donné
+	 */
+	@Override
+	public List<Utilisateur> findUsersByProjet(int id) {
+		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+		utilisateurRepository.findUsersByProjet(id).forEach(utilisateurs::add);
+		return utilisateurs;
+	}
 }

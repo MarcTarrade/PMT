@@ -8,6 +8,8 @@ import { ProjectComponent } from './pages/project/project.component';
 import { ProjectDetailComponent } from './pages/project/project-detail/project-detail.component';
 import { NewProjectComponent } from './pages/project/new-project/new-project.component';
 import { ListProjectComponent } from './pages/project/list-project/list-project.component';
+import { TacheDetailComponent } from './pages/tache/tache-detail/tache-detail.component';
+import { TacheComponent } from './pages/tache/tache.component';
 
 export const routes: Routes = [
 {
@@ -36,6 +38,18 @@ export const routes: Routes = [
     }, {
         path: ':id',
         component: ProjectDetailComponent,
+        canActivate: [authGuard]
+    }]
+}, {
+    path: 'project/:id/tache',
+    component: TacheComponent,
+    children: [{
+        path: 'new',
+        component: TacheDetailComponent,
+        canActivate: [authGuard]
+    }, {
+        path: ':tacheId',
+        component: TacheDetailComponent,
         canActivate: [authGuard],
     }],
 }];

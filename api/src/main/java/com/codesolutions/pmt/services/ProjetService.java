@@ -15,8 +15,6 @@ public interface ProjetService {
 
 	Projet findById(int id);
 
-	List<Utilisateur> findUsersByProjectId(int id);
-
 	List<Projet> findProjetsByUtilisateurId(int id);
 	
 }

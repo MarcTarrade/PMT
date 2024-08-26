@@ -49,4 +49,8 @@ export class ProjetApiService {
   updateRoles(id_projet: number, projetUtilisateurRole: ProjetUtilisateurRole[]){
     return this.httpClient.put<ProjetUtilisateurRole[]>(`${this.url}/projet/${id_projet}/roles`, projetUtilisateurRole);
   }
+
+  getUsersByProject(id_projet: number){
+    return this.httpClient.get<Utilisateur[]>(`${this.url}/projet/${id_projet}/users`);
+  }
 }

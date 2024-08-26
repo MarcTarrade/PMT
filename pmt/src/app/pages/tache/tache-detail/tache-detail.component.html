@@ -1,0 +1,22 @@
+<app-error-toast [message]="errorMessage" [show]="showErrorToast" (showChanged)="showError(errorMessage, $event)"></app-error-toast>
+<form [formGroup]="tacheForm" class="container mt-4" (submit)="onSubmit()">
+    <h2>Nom</h2>
+    <input type="text" class="form-control" id="nom" formControlName="nom">
+    <p>Description</p>
+    <input type="text" class="form-control" id="description" formControlName="description">
+    <p>Date d'échéance</p>
+    <input type="date" class="form-control" id="dateEcheance" formControlName="dateEcheance">
+    <p>Priorité</p>
+    <input type="text" class="form-control" id="priorite" formControlName="priorite">
+    <p>Utilisateur assigné</p>
+    <select class="form-select" name="user" id="user" formControlName="utilisateur">
+        <option *ngFor="let user of users" [ngValue]="user">{{ user.email }}</option>
+    </select>
+
+    <p>Status</p>
+    <select class="form-select" name="status" id="status" formControlName="status">
+        <option *ngFor="let status of ['Crée', 'En cours', 'Terminée']" [ngValue]="status">{{ status }}</option>
+    </select>
+
+    <button class="btn btn-primary mt-3">Sauvegarder</button>
+</form>

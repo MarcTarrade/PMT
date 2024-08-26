@@ -57,4 +57,9 @@ public class UtilisateurController {
 	public Utilisateur findById(@PathVariable int id) {
 		return utilisateurService.findById(id);
 	}
+	
+	@GetMapping("projet/{id}/users")
+	public List<Utilisateur> findUsersByProjetId(@PathVariable int id){
+		return utilisateurService.findUsersByProjet(id);
+	}
 }

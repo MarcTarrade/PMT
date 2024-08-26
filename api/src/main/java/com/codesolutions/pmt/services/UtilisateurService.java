@@ -14,5 +14,7 @@ public interface UtilisateurService {
 
 	Utilisateur findById(int id);
 
+	List<Utilisateur> findUsersByProjet(int id);
+
 	
 }

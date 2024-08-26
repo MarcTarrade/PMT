@@ -63,15 +63,6 @@ public class ProjetServiceImpl implements ProjetService {
 	 throw new EntityDoesntExistsException();
 	}
 
-	/**
-	 * Recupere tous les utilisateurs membre d'un projet grace a un id donné
-	 */
-	@Override
-	public List<Utilisateur> findUsersByProjectId(int id) {
-		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-		projetRepository.findUsers(id).forEach(utilisateurs::add);
-		return utilisateurs;
-	}
 	
 	/**
 	 * Recupere tous les projets pour un utilisateur 

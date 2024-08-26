@@ -1,0 +1,38 @@
+<div class="text-end mt-3">
+    <button class="btn btn-primary end-0" routerLink="tache/new">Ajouter une tache</button>
+</div>
+<div class="d-flex justify-content-between mt-5">
+    <div class="list-group">
+        <h3>Crée</h3>
+        <a [routerLink]="'tache/' + tache.id" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let tache of taches | filterTache:'Crée'">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ tache.nom }}</h5>
+                <small>{{ tache.dateEcheance | date:'d MMMM y':undefined:'fr-FR' }}</small>
+            </div>
+            <p class="mb-1">{{ tache.description }}</p>
+            <small>{{ tache.utilisateur?.email ?? 'Non attributé à un utilisateur'}}</small>
+        </a>
+    </div>
+    <div class="list-group">
+        <h3>En cours</h3>
+        <a [routerLink]="'tache/' + tache.id" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let tache of taches | filterTache:'En cours'">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ tache.nom }}</h5>
+            <small>{{ tache.dateEcheance | date:'d MMMM y':undefined:'fr-FR' }}</small>
+          </div>
+          <p class="mb-1">{{ tache.description }}</p>
+          <small>{{ tache.utilisateur?.email ?? 'Non attributé à un utilisateur'}}</small>
+        </a>
+      </div>
+      <div class="list-group">
+        <h3>Terminée</h3>
+        <a [routerLink]="'tache/' + tache.id" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let tache of taches|filterTache:'Terminée'">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ tache.nom }}</h5>
+            <small>{{ tache.dateEcheance | date:'d MMMM y':undefined:'fr-FR' }}</small>
+          </div>
+          <p class="mb-1">{{ tache.description }}</p>
+          <small>{{ tache.utilisateur?.email ?? 'Non attributé à un utilisateur'}}</small>
+        </a>
+      </div>
+</div>

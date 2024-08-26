@@ -34,9 +34,13 @@ CREATE TABLE tache (
     description VARCHAR(1000),
     date_echeance DATE,
     priorite VARCHAR(20),
-    id_utilisateur BIGINT,
-    id_projet BIGINT,
+    utilisateur_id BIGINT,
     status VARCHAR(255)
+);
+
+CREATE TABLE projet_taches (
+    projet_id BIGINT,
+    taches_id BIGINT
 );
 
 CREATE TABLE historique (
@@ -58,13 +62,15 @@ INSERT INTO projet_utilisateur_role (id, projet_id, role_id, utilisateur_id) VAL
 
 INSERT INTO role (id, nom) VALUES (1000, "Membre"), (2000, "Observateur");
 
-INSERT INTO tache (id, nom, description, date_echeance, priorite, id_utilisateur, id_projet, status) VALUES 
-(1000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/08/30', "HAUTE", 2000, 1000, "Crée"), 
-(2000, "Connexion/Inscription Back", "Faire la page de connexion et d'inscription en java", '2024/08/30', "HAUTE", 2000, 1000, "Crée"), 
-(3000, "Creer projet Front", "Faire la page pour creer un nouveau projet en angular", '2024/08/28', "BASSE", 3000, 1000, "En cours"), 
-(4000, "Creer projet Back", "Faire la page pour creer un nouveau projet en java", '2024/08/28', "BASSE", 3000, 1000, "En cours"), 
-(5000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/09/30', "HAUTE", 1000, 2000, "Crée"), 
-(6000, "Connexion/Inscription Back", "Faire la page de connexion et d'inscription en java", '2024/09/30', "HAUTE", 3000, 2000, "Crée");
+INSERT INTO tache (id, nom, description, date_echeance, priorite, utilisateur_id, status) VALUES 
+(1000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/08/30', "HAUTE", 2000, "Crée"), 
+(2000, "Connexion/Inscription Back", "Faire la page de connexion et d'inscription en java", '2024/08/30', "HAUTE", 2000, "Crée"), 
+(3000, "Creer projet Front", "Faire la page pour creer un nouveau projet en angular", '2024/08/28', "BASSE", 3000, "En cours"), 
+(4000, "Creer projet Back", "Faire la page pour creer un nouveau projet en java", '2024/08/28', "BASSE", 3000, "En cours"), 
+(5000, "Connexion/Inscription Front", "Faire la page de connexion et d'inscription en angular", '2024/09/30', "HAUTE", 1000, "Crée"), 
+(6000, "Connexion/Inscription Back", "Faire la page de connexion et d'inscription en java", '2024/09/30', "HAUTE", 3000, "Crée");
+
+INSERT INTO projet_taches (projet_id, taches_id) VALUES (1000, 1000), (1000, 2000), (1000, 3000), (2000, 4000), (2000, 5000), (2000, 6000);
 
 INSERT INTO historique (id, nom, description, date_echeance, priorite, id_utilisateur_modificateur, id_tache, status) VALUES 
 (1000, "Connexion Front", "Faire la page de connexion en angular", '2024/08/30', "HAUTE", 2000, 1000, "Crée"), 

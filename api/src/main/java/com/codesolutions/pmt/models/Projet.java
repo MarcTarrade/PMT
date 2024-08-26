@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
@@ -31,6 +32,8 @@ public class Projet {
 	private Utilisateur administrateur;
 	@OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProjetUtilisateurRole> utilisateurs = new ArrayList<>();
+	@OneToMany
+	private List<Tache> taches = new ArrayList<Tache>();
 	
 	public Projet() {}
 	
@@ -71,13 +74,20 @@ public class Projet {
 	public void setAdministrateur(Utilisateur administrateur) {
 		this.administrateur = administrateur;
 	}
-
 	public List<ProjetUtilisateurRole> getUtilisateurs() {
 		return utilisateurs;
 	}
-
 	public void setUtilisateurs(List<ProjetUtilisateurRole> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
+
+	public List<Tache> getTaches() {
+		return taches;
+	}
+
+	public void setTaches(List<Tache> taches) {
+		this.taches = taches;
+	}
+	
 	
 }
