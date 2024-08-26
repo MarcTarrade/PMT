@@ -2,6 +2,7 @@ package com.codesolutions.pmt.services;
 
 import java.util.List;
 
+import com.codesolutions.pmt.models.Historique;
 import com.codesolutions.pmt.models.Tache;
 
 public interface TacheService {
@@ -12,7 +13,7 @@ public interface TacheService {
 
 	Tache findById(int id);
 
-	Tache partialUpdate(int id, Tache tache);
+	Tache partialUpdate(int id, Tache tache, int id_user);
 
 	List<Tache> findAllByProjet(int id_projet);
 

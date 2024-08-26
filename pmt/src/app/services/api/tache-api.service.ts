@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tache } from '../tache.service';
+import { Historique, Tache } from '../tache.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,9 @@ export class TacheApiService {
 
   getDetailTache(id: number) {
     return this.httpClient.get<Tache>(`${this.url}/tache/${id}`)
+  }
+
+  getHistorique(id_tache: number){
+    return this.httpClient.get<Historique[]>(`${this.url}/tache/${id_tache}/historique`)
   }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.codesolutions.pmt.dao.TacheRepository;
 import com.codesolutions.pmt.exceptions.EntityDoesntExistsException;
+import com.codesolutions.pmt.models.Historique;
 import com.codesolutions.pmt.models.Projet;
 import com.codesolutions.pmt.models.Tache;
 import com.codesolutions.pmt.models.Utilisateur;
@@ -22,6 +23,8 @@ public class TacheServiceImpl implements TacheService {
 	private ProjetServiceImpl projetServiceImpl;
 	@Autowired
 	private UtilisateurServiceImpl utilisateurServiceImpl;
+	@Autowired
+	private HistoriqueServiceImpl historiqueServiceImpl;
 	
 	@Override
 	public Tache creer(int id_projet, Tache tache) {
@@ -49,8 +52,9 @@ public class TacheServiceImpl implements TacheService {
 	}
 
 	@Override
-	public Tache partialUpdate(int id, Tache newTache) {
+	public Tache partialUpdate(int id, Tache newTache, int id_user) {
 		Tache tacheExistante = findById(id);
+		historiqueServiceImpl.saveTacheHistorique(tacheExistante, id_user);
 		if(newTache.getNom() != null) {
 			tacheExistante.setNom(newTache.getNom());
 		}
@@ -73,5 +77,8 @@ public class TacheServiceImpl implements TacheService {
 	public List<Tache> findAllByProjet(int id_projet) {
 		return tacheRepository.findAllByProjet(id_projet);
 	}
+
+	
+
 
 }

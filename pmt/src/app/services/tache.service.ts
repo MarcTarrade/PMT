@@ -12,6 +12,15 @@ export interface Tache {
     status: string;
     utilisateur?: Utilisateur;
 }
+export interface Historique {
+    id?: number;
+    nom: string;
+    description: string;
+    dateEcheance?: Date;
+    priorite: string;
+    status: string;
+    utilisateur_modificateur?: Utilisateur;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +47,9 @@ export class TacheService {
 
   async getDetailTache(id: number) {
     return await lastValueFrom(this.tacheApiService.getDetailTache(id));
+  }
+
+  async getHistorique(id_tache: number) {
+    return await lastValueFrom(this.tacheApiService.getHistorique(id_tache));
   }
 }

@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codesolutions.pmt.models.Historique;
 import com.codesolutions.pmt.models.Tache;
+import com.codesolutions.pmt.services.HistoriqueService;
 import com.codesolutions.pmt.services.TacheService;
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -38,13 +41,15 @@ public class TacheController {
 	}
 	
 	@PatchMapping("tache/{id}")
-	public Tache partialUpdate(@PathVariable int id, @RequestBody Tache tache) {
-		return tacheService.partialUpdate(id, tache);
+	public Tache partialUpdate(@PathVariable int id, @RequestBody Tache tache, @RequestHeader int id_user) {
+		return tacheService.partialUpdate(id, tache, id_user);
 	}
 	
 	@GetMapping("/projet/{id_projet}/taches")
 	public List<Tache> findAllByProjet(@PathVariable int id_projet) {
 		return tacheService.findAllByProjet(id_projet);
 	}
+	
+
 	
 }

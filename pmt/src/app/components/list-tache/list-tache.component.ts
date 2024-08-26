@@ -1,12 +1,16 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, LOCALE_ID, OnChanges } from '@angular/core';
 import { Tache, TacheService } from '../../services/tache.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FilterTachePipe } from "../../pipes/filter-tache.pipe";
 import { RouterLink } from '@angular/router';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 @Component({
   selector: 'app-list-tache',
   standalone: true,
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   imports: [CommonModule, FilterTachePipe, RouterLink],
   templateUrl: './list-tache.component.html',
   styleUrl: './list-tache.component.scss'

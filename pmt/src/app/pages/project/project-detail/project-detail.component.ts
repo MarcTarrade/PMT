@@ -2,21 +2,18 @@ import { Component, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjetService } from '../../../services/projet.service';
 import { Projet } from '../../../services/api/projet-api.service';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { UserItemComponent } from '../../../components/user-item/user-item.component';
 import { FormsModule } from '@angular/forms';
 import { Role } from '../../../services/api/role-api.service';
 import { ErrorToastComponent } from '../../../components/error-toast/error-toast.component';
 import { ListTacheComponent } from '../../../components/list-tache/list-tache.component';
-import localeFr from '@angular/common/locales/fr';
 
-registerLocaleData(localeFr);
 
 @Component({
   selector: 'app-project-detail',
   standalone: true,
   imports: [CommonModule, UserItemComponent,FormsModule, ErrorToastComponent, ListTacheComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss'
 })
