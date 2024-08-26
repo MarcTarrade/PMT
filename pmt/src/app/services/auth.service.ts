@@ -51,4 +51,9 @@ export class AuthService {
         return;
     }
   }
+
+  logout() {
+    this.utilisateur = undefined;
+    localStorage.removeItem('user');
+  }
 }
