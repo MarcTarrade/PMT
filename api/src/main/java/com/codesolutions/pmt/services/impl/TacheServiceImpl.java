@@ -26,6 +26,9 @@ public class TacheServiceImpl implements TacheService {
 	@Autowired
 	private HistoriqueServiceImpl historiqueServiceImpl;
 	
+	/**
+	 * Creer une nouvelle tache
+	 */
 	@Override
 	public Tache creer(int id_projet, Tache tache) {
 		Projet projet = projetServiceImpl.findById(id_projet);
@@ -34,6 +37,9 @@ public class TacheServiceImpl implements TacheService {
 		return tacheRepository.save(tache);
 	}
 
+	/**
+	 * Assigne une tache à un utilisateur donné
+	 */
 	@Override
 	public Tache assigner(int id_user, int id_tache) {
 		Utilisateur utilisateur = utilisateurServiceImpl.findById(id_user);
@@ -42,6 +48,9 @@ public class TacheServiceImpl implements TacheService {
 		return tacheRepository.save(tache);
 	}
 
+	/**
+	 * Recupere les details d'un tache
+	 */
 	@Override
 	public Tache findById(int id) {
 		Optional<Tache> optional = tacheRepository.findById(id);
@@ -51,6 +60,7 @@ public class TacheServiceImpl implements TacheService {
 		throw new EntityDoesntExistsException();
 	}
 
+	// Met à jour une tache donnée
 	@Override
 	public Tache partialUpdate(int id, Tache newTache, int id_user) {
 		Tache tacheExistante = findById(id);
@@ -73,6 +83,7 @@ public class TacheServiceImpl implements TacheService {
 		return tacheRepository.save(tacheExistante);
 	}
 
+	// Recupere toutes les taches pour un projet donné
 	@Override
 	public List<Tache> findAllByProjet(int id_projet) {
 		return tacheRepository.findAllByProjet(id_projet);

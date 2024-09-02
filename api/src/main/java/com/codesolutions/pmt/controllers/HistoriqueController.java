@@ -17,7 +17,11 @@ public class HistoriqueController {
 	
 	@Autowired
 	private HistoriqueService historiqueService;
-	
+	/**
+	 * 
+	 * @param id int
+	 * @return List<Historique>
+	 */
 	@GetMapping("/tache/{id}/historique")
 	public List<Historique> findHistoriqueByTache(@PathVariable int id){
 		return historiqueService.findAllByTache(id);

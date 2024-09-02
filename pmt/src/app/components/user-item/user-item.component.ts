@@ -23,6 +23,7 @@ export class UserItemComponent {
 
     async getRoles(){
         this.roles = await this.roleService.getRoles();
+        // Retrouve le role de l'utilisateur dans la liste des roles pour pouvoir le changer avec ngModel
         this.role = this.roles.find(role => role.id === this.role.id)!;
     }
 

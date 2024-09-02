@@ -52,6 +52,7 @@ export class AuthService {
     }
   }
 
+  // Deconnecte l'utilisateur
   logout() {
     this.utilisateur = undefined;
     localStorage.removeItem('user');

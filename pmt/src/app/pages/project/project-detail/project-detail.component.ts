@@ -37,6 +37,7 @@ export class ProjectDetailComponent {
     }
 
     onSaveUtilisateurs() {
+        // Verifie que l'utilisateur est un administrateur et qu'il est possible de changer le role des utilisateurs
         if(!this.projetService.isAdmin()) return this.showError("Impossible de changer le role des utilisateurs. Vous devez être administrateur du projet.", true);
         this.projetService.updateRoles(this.currentId, this.projet!.utilisateurs)
     }
@@ -47,12 +48,14 @@ export class ProjectDetailComponent {
     }
 
     async onAddUtilisateur() {
+        // Verifie que l'utilisateur est un administrateur et qu'il est possible d'ajouter un utilisateur
         if (!this.projetService.isAdmin()) return this.showError("Impossible d'ajouter un utilisateur. Vous devez être administrateur du projet.", true);
         const newUtilisateur = await this.projetService.addUtilisateurToProjet(this.currentId, this.newUtilisateurEmail)
         this.projet?.utilisateurs.push(newUtilisateur);
     }
 
     showError(message: string, show: boolean) {
+        // Affiche un message d'erreur si une erreur est survenue
         this.errorMessage = message;
         this.showErrorToast = show;
     }

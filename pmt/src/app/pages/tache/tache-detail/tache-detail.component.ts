@@ -35,6 +35,7 @@ export class TacheDetailComponent {
     showErrorToast = false;
 
     constructor(private tacheService: TacheService, private activatedRoute: ActivatedRoute, private projetService: ProjetService, private router: Router) {
+        // Recuperer l'id de la tache
         this.activatedRoute.params.subscribe(params => {
             const id_tacheStr = params['tacheId'];
             if (id_tacheStr != 'new'){
@@ -42,11 +43,13 @@ export class TacheDetailComponent {
                 this.currentId = id_tache;
             }
         })
+        // Recuperer l'id du projet
         this.activatedRoute.parent?.params.subscribe(params => {
             const idStr = params['id'];
             const id = parseInt(idStr);
             this.projetId = id;
         })
+        // Verifie que l'id de la tache est un nombre et pas /new pour recuperer les informations de la tache
         if (!isNaN(this.currentId)){
             this.getCurrentTache();
         }
@@ -62,6 +65,7 @@ export class TacheDetailComponent {
     }
     
     async getCurrentTache(){
+        // Recupere les informations de la tache et les met dans le formulaire
         await this.getUsers();
         this.currentTache = await this.tacheService.getDetailTache(this.currentId as number);
         const utilisateur = this.users.find(user => user.id == this.currentTache.utilisateur?.id);
@@ -84,12 +88,15 @@ export class TacheDetailComponent {
     }
 
     onSubmit(){
+        // Verifie que l'utilisateur est au moins un membre du projet et qu'il est possible de modifier la tache
         if (!this.projetService.isMember()) return this.showError("Impossible de modifier la tache. Vous devez être au moins membre du projet.", true);
+        // Si la tache est nouvelle, on l'ajoute au projet sinon on la met à jour
         if(this.currentTache.id == undefined){
             this.tacheService.postTache(this.projetId, this.tacheForm.value);
         } else {
             this.tacheService.updateTache(this.currentTache.id as number,this.tacheForm.value);
         }
+        // Ensuite on assigne l'utilisateur a la tache si il est different de l'utilisateur actuel
         if (this.currentTache.utilisateur?.id != this.tacheForm.value.utilisateur?.id){
             this.tacheService.assignerTache(this.tacheForm.value.utilisateur?.id, this.currentTache.id as number);
         }

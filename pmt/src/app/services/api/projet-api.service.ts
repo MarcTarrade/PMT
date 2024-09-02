@@ -50,6 +50,7 @@ export class ProjetApiService {
     return this.httpClient.put<ProjetUtilisateurRole[]>(`${this.url}/projet/${id_projet}/roles`, projetUtilisateurRole);
   }
 
+  // Recupere tous les utilisateurs d'un projet
   getUsersByProject(id_projet: number){
     return this.httpClient.get<Utilisateur[]>(`${this.url}/projet/${id_projet}/users`);
   }

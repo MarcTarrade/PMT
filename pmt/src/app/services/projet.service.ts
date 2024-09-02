@@ -37,6 +37,7 @@ export class ProjetService {
     this.projetApiService.updateRoles(id_projet, projetUtilisateurRole).subscribe();
   }
 
+  // Verifie si l'utilisateur est un administrateur
   isAdmin(): boolean {
     if(!this.projet) return false
     const utilisateur = this.authService.userInfo();
@@ -44,6 +45,7 @@ export class ProjetService {
     return this.projet.administrateur.id === utilisateur.id ? true : false;
   }
 
+  // Verifie si l'utilisateur est au moins un membre
   isMember(): boolean {
     if(!this.projet) return false
     const utilisateur = this.authService.userInfo();
@@ -51,6 +53,7 @@ export class ProjetService {
     return this.projet.utilisateurs.find(utilisateurElement => utilisateurElement.utilisateur.id === utilisateur.id && utilisateurElement.role.nom === 'Membre') || this.projet.administrateur.id === utilisateur.id ? true : false;
 }
 
+  // Recupere tous les utilisateurs d'un projet
   async getUsersByProject(id_projet: number) {
     return await lastValueFrom(this.projetApiService.getUsersByProject(id_projet));
   }
