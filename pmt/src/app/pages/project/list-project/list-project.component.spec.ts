@@ -43,13 +43,7 @@ describe('ListProjectComponent', () => {
   });
 
   it('should display project name', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    component.getProjectsByUser().then(res => {
-        console.log(res)
-    }).catch(err => {
-        console.log(err)}
-    );
-    
+    const compiled = fixture.nativeElement as HTMLElement;   
     expect(compiled.querySelector('.list-group-item h2')).toBeTruthy();
   });
 });
