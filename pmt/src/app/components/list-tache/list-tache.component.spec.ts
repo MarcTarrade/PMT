@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListTacheComponent } from './list-tache.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../app.routes';
 
 describe('ListTacheComponent', () => {
   let component: ListTacheComponent;
@@ -8,7 +11,8 @@ describe('ListTacheComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListTacheComponent]
+      imports: [ListTacheComponent],
+      providers: [provideHttpClient(), provideRouter(routes)]
     })
     .compileComponents();
 

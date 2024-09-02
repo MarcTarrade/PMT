@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserItemComponent } from './user-item.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../app.routes';
 
 describe('UserItemComponent', () => {
   let component: UserItemComponent;
@@ -8,7 +11,8 @@ describe('UserItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserItemComponent]
+      imports: [UserItemComponent],
+      providers: [provideHttpClient(), provideRouter(routes)]
     })
     .compileComponents();
 

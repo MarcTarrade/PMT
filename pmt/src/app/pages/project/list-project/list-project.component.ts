@@ -19,4 +19,7 @@ export class ListProjectComponent {
     }
 
     async getProjectsByUser(){ this.projets = await this.projetService.getProjetsByUser(this.authService.userInfo()!.id) }
+    test(){
+        return this.authService.userInfo()
+    }
 }
