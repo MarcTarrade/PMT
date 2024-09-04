@@ -31,6 +31,15 @@ public class Utilisateur {
 	@JsonIgnore
     private List<ProjetUtilisateurRole> projets = new ArrayList<>();
 	
+	public Utilisateur() {
+		super();
+	}
+	public Utilisateur(String nom, String email, String password) {
+		super();
+		this.nom = nom;
+		this.email = email;
+		this.password = password;
+	}
 	public int getId() {
 		return id;
 	}

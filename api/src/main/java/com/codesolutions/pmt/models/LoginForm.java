@@ -5,6 +5,11 @@ public class LoginForm {
 	private String password;
 	
 	
+	public LoginForm(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 	public String getEmail() {
 		return email;
 	}

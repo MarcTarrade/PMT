@@ -3,6 +3,10 @@ package com.codesolutions.pmt.models;
 public class ProjetForm {
 	private String nom;
 	private String description;
+	public ProjetForm(String nom, String description) {
+		this.nom = nom;
+		this.description = description;
+	}
 	public String getNom() {
 		return nom;
 	}

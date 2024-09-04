@@ -26,6 +26,25 @@ public class Tache {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "utilisateur_id")
 	private Utilisateur utilisateur;
+	
+	public Tache(String nom, String description, LocalDate dateEcheance, String priorite, String status) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.dateEcheance = dateEcheance;
+		this.priorite = priorite;
+		this.status = status;
+	}
+	
+	public Tache() {
+		super();
+	}
+
+	public Tache(String nom) {
+		super();
+		this.nom = nom;
+	}
+
 	public int getId() {
 		return id;
 	}
