@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: pmt
+    ports:
+    - "3306:3306"
+    volumes:
+    - ./scriptBDD_PMT.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build: ./api
+    restart: always
+    ports:
+    - "8090:8090"
+    depends_on:
+    - db
+  
+  pmt:
+    build: ./pmt
+    restart: always
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
